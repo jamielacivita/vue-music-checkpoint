@@ -7,7 +7,7 @@
 </form>
 <!--<h4>{{requestResponse}}</h4>-->
 <h4 v-for="(song, index) in requestResponse">
-    <button @click="testMethod(index)">To My List</button>
+    <button @click="addToMyTunes(index)">To My List</button>
     {{song.trackName}}</h4>
 </div>
 </template>
@@ -36,9 +36,15 @@ requestMusic(){
   this.requestResponse = j['results']
 });},
 
-testMethod(index)
+addToMyTunes(index)
 {
-    console.log("In test Method with", index)
+    // console.log("In test Method with", index)
+    // console.log("-------------------------")
+    // console.log(this.requestResponse[index])
+    // console.log("-------------------------")
+
+    MyTunesService.addTrack(this.requestResponse[index])
+
 }
 
 
