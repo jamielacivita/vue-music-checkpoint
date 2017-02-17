@@ -42,10 +42,20 @@ export default {
 
 
   removeTrack(Id) {
-  console.log("you are in remove track in MyTunes-service with: ", Id)
+  //console.log("you are in remove track in MyTunes-service with: ", Id)
+  //console.log(myTunes[Id])
+  delete myTunes[Id]
+  //console.log(myTunes[Id])
+  saveMytunes()
 
 
    },
-  promoteTrack() { },
+  promoteTrack(Id) { 
+
+  console.log("you are in promote track in MyTunes-service with: ", Id)
+
+
+
+  },
   demoteTrack() { }
 }

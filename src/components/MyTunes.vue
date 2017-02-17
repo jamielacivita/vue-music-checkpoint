@@ -9,6 +9,8 @@
     <!--{{obj.artworkUrl30}}-->
     <img v-bind:src="obj.artworkUrl30">
     <button @click="removeTrack(obj.trackId)">Remove</button>
+    <button @click="up(obj.trackId)">Up</button>
+    <button @click="down(obj.trackId)">Down</button>
     <hr>
     </div>
 
@@ -28,7 +30,19 @@ export default {
     removeTrack: function(Id){
         //console.log("you are in remove track in MyTunes with: ", Id)
         MyTunesService.removeTrack(Id)
-    }
+        this.$parent.lastupdated = Date.now()},
+    
+    up: function(Id){
+    //console.log("you are in up track in MyTunes with: ", Id)
+    MyTunesService.promoteTrack(Id)
+},
+
+    down: function(Id){
+    console.log("you are in down track in MyTunes with: ", Id)
+}
+
+
+
   },
   computed: {
         trackData: function()
