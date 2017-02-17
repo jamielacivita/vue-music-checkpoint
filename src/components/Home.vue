@@ -1,19 +1,22 @@
 <template>
   <div class="home">
     <!-- YOU WILL PROBABLY END UP WITH SOMETHING LIKE THIS -->
-    <my-tunes class="my-tunes"></my-tunes>
-    <itunes class="itunes"></itunes>
+    <myTunes class="my-tunes"></myTunes>
+    <itunes class="itunes">Itunes</itunes>
   </div>
 </template>
 
 <script>
+import MyTunes from './MyTunes'
+import Itunes from './Itunes'
 export default {
   name: 'home',
   data () {
     return {
       
     }
-  }
+  },
+  components: {MyTunes, Itunes}
 }
 </script>
 
