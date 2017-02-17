@@ -20,9 +20,7 @@ export default {
     }
   },
   methods: {
-    //   testMethod: function(){
-    //       console.log("form triggered")},
-requestMusic: function(){
+requestMusic(){
     ItunesService.getMusicByArtist(this.artist)
 
 }

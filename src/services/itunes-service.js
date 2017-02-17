@@ -9,8 +9,8 @@ export default {
 	return response.json();
 }).then(function(j) {
 	// Yay, `j` is a JavaScript object
-	console.log(j); 
-  
+	console.log(j);
+  return j
 });
   
   }
