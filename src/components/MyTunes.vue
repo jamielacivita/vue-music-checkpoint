@@ -39,6 +39,7 @@ export default {
 
     down: function(Id){
     console.log("you are in down track in MyTunes with: ", Id)
+    MyTunesService.demoteTrack(Id)
 }
 
 

@@ -28,7 +28,7 @@ export default {
   addTrack(obj_itunes) {
     console.log(obj_itunes)
     myTunes[obj_itunes['trackId']] = obj_itunes //remember not to wrap this becasue it is alreday obj.
-    console.log("myTunes: ", myTunes)
+    myTunes[obj_itunes['trackId']]['_votes']=0
     saveMytunes()
 
     // OCCASIONALLY YOU WILL RUN INTO ISSUES WHERE VUE WILL BE
@@ -53,9 +53,16 @@ export default {
   promoteTrack(Id) { 
 
   console.log("you are in promote track in MyTunes-service with: ", Id)
+  myTunes[Id]['_votes'] = (myTunes[Id]['_votes'] + 1)
+  console.log(myTunes[Id]['_votes'])
+
+
 
 
 
   },
-  demoteTrack() { }
+  demoteTrack(Id) { 
+      myTunes[Id]['_votes'] = (myTunes[Id]['_votes'] - 1)
+        console.log(myTunes[Id]['_votes'])
+  }
 }
