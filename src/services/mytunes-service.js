@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
-//let myTunes = {}
-let myTunes = {testObject01:"testObject01",testObject01:"testObject01",testObject01:"testObject01"}
+let myTunes = {}
 
 // THESE ARE SIMPLE HELPER FUNCTIONS TO KEEP YOUR MYTUNES IN LOCAL STORAGE
 // WE WILL EVENTUALLY BE REPLACING THESE GUYS BUT NOT TODAY :)
@@ -16,22 +15,32 @@ function loadMytunes() {
   myTunes = JSON.parse(localStorage.getItem('myTunes')) || {}
 }
 
-//loadMytunes()  <-- turn this back on when the dictionary is working. 
+loadMytunes()   
 
 export default {
-  getTracks() {return myTunes },
-  addTrack(track) {
+
+
+  getTracks() 
+  {
+    return myTunes;
+  },
+
+  addTrack(obj_itunes) {
+    console.log(obj_itunes)
+    myTunes[obj_itunes['trackId']] = obj_itunes //remember not to wrap this becasue it is alreday obj.
+    console.log("myTunes: ", myTunes)
+    saveMytunes()
+
     // OCCASIONALLY YOU WILL RUN INTO ISSUES WHERE VUE WILL BE
     // UNAWARE THAT A CHANGE HAS OCCURED TO YOUR DATA
     // TO ELIMINATE THIS PROBLEM YOU CAN USE 
-    Vue.set(myTunes, track.id, track)
-    console.log("in mytunes service with:",track)
-
-    //saveMytunes()
-    
+    //Vue.set(myTunes, track.id, track)
     // YOU CAN READ MORE ABOUT VUE.SET HERE
     // https://vuejs.org/v2/api/#Vue-set
    },
+
+
+
   removeTrack() { },
   promoteTrack() { },
   demoteTrack() { }

@@ -37,14 +37,9 @@ requestMusic(){
 });},
 
 addToMyTunes(index)
-{
-    // console.log("In test Method with", index)
-    // console.log("-------------------------")
-    // console.log(this.requestResponse[index])
-    // console.log("-------------------------")
-
+{   console.log(index)
     MyTunesService.addTrack(this.requestResponse[index])
-
+    this.$parent.lastupdated = Date.now()
 }
 
 

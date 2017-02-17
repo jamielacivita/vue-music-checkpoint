@@ -1,7 +1,9 @@
 <template>
 <div>
 <h1>MyTunes Coponent is here</h1>
-{{trackData}}
+<h3>{{trackData}}</h3>
+<!--<h4 v-for="obj in trackData">{{obj}}</h4>-->
+
 </div>
 </template>
 
@@ -12,10 +14,19 @@ export default {
   data () {
     return {
         testData: 'This is test data',
-        trackData: MyTunesService.getTracks()
     }
   },
-  methods: {}
+  methods: {},
+  computed: {
+        trackData: function()
+        
+        {
+            this.$parent.lastupdated;
+            return MyTunesService.getTracks()
+    }
+
+
+  }
 }
 </script>
 

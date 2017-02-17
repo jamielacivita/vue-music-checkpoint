@@ -13,7 +13,7 @@ export default {
   name: 'home',
   data () {
     return {
-      
+    lastupdated: Date.now() 
     }
   },
   components: {MyTunes, Itunes}
