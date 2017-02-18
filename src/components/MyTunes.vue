@@ -6,6 +6,8 @@
     <div v-for="obj in trackData">
     {{obj.trackId}}
     {{obj.artistName}}
+    {{obj.trackName}}
+    {{obj._votes}}
     <!--{{obj.artworkUrl30}}-->
     <img v-bind:src="obj.artworkUrl30">
     <button @click="removeTrack(obj.trackId)">Remove</button>
@@ -35,6 +37,7 @@ export default {
     up: function(Id){
     //console.log("you are in up track in MyTunes with: ", Id)
     MyTunesService.promoteTrack(Id)
+    this.$parent.lastupdated = Date.now()
 },
 
     down: function(Id){

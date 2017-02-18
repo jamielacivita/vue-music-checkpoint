@@ -38,12 +38,13 @@ export default {
 
     //Need to sort the array by votes. 
     arr_Output.sort(function(a,b){
-      return (a._votes - b._votes)
+      return (a._votes - b._votes)*(-1)
     })
 
     console.log("arr_Output: ", arr_Output)
 
-    return myTunes;
+    //return myTunes;
+    return arr_Output;
   },
 
   addTrack(obj_itunes) {
