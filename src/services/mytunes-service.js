@@ -22,6 +22,27 @@ export default {
 
   getTracks() 
   {
+    //myTunes is an dictionary we need to add this info to an array and sort by votes and return array.  We may be able to write a custom sort function base on the votes property.
+
+    let arr_Output = []
+    //output the dictionary into the array.
+    //get an array of the keys
+    let keys = Object.keys(myTunes)
+    //console.log(keys)
+    //add the objects to the array
+    for (var i = 0; i < keys.length; i++)
+    {
+      let obj = myTunes[keys[i]]
+      arr_Output.push(obj)
+    }
+
+    //Need to sort the array by votes. 
+    arr_Output.sort(function(a,b){
+      return (a._votes - b._votes)
+    })
+
+    console.log("arr_Output: ", arr_Output)
+
     return myTunes;
   },
 
@@ -55,10 +76,8 @@ export default {
   console.log("you are in promote track in MyTunes-service with: ", Id)
   myTunes[Id]['_votes'] = (myTunes[Id]['_votes'] + 1)
   console.log(myTunes[Id]['_votes'])
-
-
-
-
+  saveMytunes()
+  this.getTracks()
 
   },
   demoteTrack(Id) { 
