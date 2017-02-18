@@ -52,7 +52,16 @@ export default {
   },
 
   removeTrack(Id) {
-    //determine the position of the track that you are removing. 
+    //determine the position of the track that you are removing.
+    let keys = Object.keys(myTunes)
+    let positionToRemove = myTunes[Id]['_position']
+    console.log("ptr: ",positionToRemove)
+    for (var i = 0; i < keys.length; i++) {
+      let obj = myTunes[keys[i]]
+      if (obj._position > positionToRemove) {
+        obj._position--
+      }
+    }
     delete myTunes[Id]
     saveMytunes()
   },
