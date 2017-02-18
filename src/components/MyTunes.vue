@@ -7,7 +7,7 @@
     {{obj.trackId}}
     {{obj.artistName}}
     {{obj.trackName}}
-    {{obj._votes}}
+    {{obj._position}}
     <!--{{obj.artworkUrl30}}-->
     <img v-bind:src="obj.artworkUrl30">
     <button @click="removeTrack(obj.trackId)">Remove</button>
@@ -30,18 +30,15 @@ export default {
   },
   methods: {
     removeTrack: function(Id){
-        //console.log("you are in remove track in MyTunes with: ", Id)
         MyTunesService.removeTrack(Id)
         this.$parent.lastupdated = Date.now()},
     
     up: function(Id){
-    //console.log("you are in up track in MyTunes with: ", Id)
     MyTunesService.promoteTrack(Id)
     this.$parent.lastupdated = Date.now()
 },
 
     down: function(Id){
-    console.log("you are in down track in MyTunes with: ", Id)
     MyTunesService.demoteTrack(Id)
     this.$parent.lastupdated = Date.now()
 }

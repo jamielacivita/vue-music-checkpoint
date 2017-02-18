@@ -2,11 +2,6 @@ import Vue from 'vue'
 
 let myTunes = {}
 
-// THESE ARE SIMPLE HELPER FUNCTIONS TO KEEP YOUR MYTUNES IN LOCAL STORAGE
-// WE WILL EVENTUALLY BE REPLACING THESE GUYS BUT NOT TODAY :)
-// NOTICE HOWEVER THAT THESE FUNCTIONS ARE NOT GOING TO BE EXPORTED BECAUSE 
-// THE COMPONENT SHOULD NEVER BE RESPONSIBLE FOR ACTUALLY CALLING saveMytunes
-// PERHAPS YOU SHOULD HAVE THE LIST SAVED WHENEVER IT MUTATES ***CHANGES***
 function saveMytunes() {
   localStorage.setItem('myTunes', JSON.stringify(myTunes))
 }
@@ -15,76 +10,86 @@ function loadMytunes() {
   myTunes = JSON.parse(localStorage.getItem('myTunes')) || {}
 }
 
-loadMytunes()   
+loadMytunes()
 
 export default {
 
 
-  getTracks() 
-  {
-    //myTunes is an dictionary we need to add this info to an array and sort by votes and return array.  We may be able to write a custom sort function base on the votes property.
+  getTracks() {
 
-    let arr_Output = []
-    //output the dictionary into the array.
+    let arr_output = []
+    //output the dictionary into the array so we can sort by _position
     //get an array of the keys
     let keys = Object.keys(myTunes)
-    //console.log(keys)
     //add the objects to the array
-    for (var i = 0; i < keys.length; i++)
-    {
+    for (var i = 0; i < keys.length; i++) {
       let obj = myTunes[keys[i]]
-      arr_Output.push(obj)
+      arr_output.push(obj)
     }
 
-    //Need to sort the array by votes. 
-    arr_Output.sort(function(a,b){
-      return (a._votes - b._votes)*(-1)
+    //Need to sort the array by _position. 
+    arr_output.sort(function (a, b) {
+      return (a._position - b._position) * (-1)
     })
 
-    console.log("arr_Output: ", arr_Output)
-
-    //return myTunes;
-    return arr_Output;
+    return arr_output;
   },
 
   addTrack(obj_itunes) {
-    console.log(obj_itunes)
+    //iterate over objects already in dictionary to incriment their position value to make room for addition.
+    let keys = Object.keys(myTunes)
+    for (var i = 0; i < keys.length; i++) {
+      let obj = myTunes[keys[i]]
+      obj._position++
+    }
+
+    //add in new track at position zero
     myTunes[obj_itunes['trackId']] = obj_itunes //remember not to wrap this becasue it is alreday obj.
-    myTunes[obj_itunes['trackId']]['_votes']=0
+    myTunes[obj_itunes['trackId']]['_position'] = 0
+
+    //save to local storage.
     saveMytunes()
-
-    // OCCASIONALLY YOU WILL RUN INTO ISSUES WHERE VUE WILL BE
-    // UNAWARE THAT A CHANGE HAS OCCURED TO YOUR DATA
-    // TO ELIMINATE THIS PROBLEM YOU CAN USE 
-    //Vue.set(myTunes, track.id, track)
-    // YOU CAN READ MORE ABOUT VUE.SET HERE
-    // https://vuejs.org/v2/api/#Vue-set
-   },
-
-
+  },
 
   removeTrack(Id) {
-  //console.log("you are in remove track in MyTunes-service with: ", Id)
-  //console.log(myTunes[Id])
-  delete myTunes[Id]
-  //console.log(myTunes[Id])
-  saveMytunes()
-
-
-   },
-  promoteTrack(Id) { 
-
-  //console.log("you are in promote track in MyTunes-service with: ", Id)
-  myTunes[Id]['_votes'] = (myTunes[Id]['_votes'] + 1)
-  //console.log(myTunes[Id]['_votes'])
-  saveMytunes()
-  this.getTracks()
-
+    //determine the position of the track that you are removing. 
+    delete myTunes[Id]
+    saveMytunes()
   },
-  demoteTrack(Id) { 
-      myTunes[Id]['_votes'] = (myTunes[Id]['_votes'] - 1)
-        console.log("** in demote track **")
+
+  promoteTrack(Id) {
+    //determine how many tracks are in the dictionary to verify we will not up position too far. 
+    let keys = Object.keys(myTunes)
+    let maxVote = keys.length - 1;
+    if (myTunes[Id]['_position'] < maxVote) {
+      //find the object for the element imeedately greater than the one upvoted.
+      let keys = Object.keys(myTunes)
+      for (var i = 0; i < keys.length; i++) {
+        let obj = myTunes[keys[i]]
+        if (obj._position == myTunes[Id]['_position'] + 1) {
+          myTunes[keys[i]]['_position']--
+          myTunes[Id]['_position']++
+          break
+        }
         saveMytunes()
         this.getTracks()
+      }
+    }
+  },
+
+  demoteTrack(Id) {
+    //Verify that the track we are downvoting is not already at the bottom.  
+    if (myTunes[Id]['_position'] > 0) {
+      //find the object for the element imeedately less than the one upvoted.
+      let keys = Object.keys(myTunes)
+      for (var i = 0; i < keys.length; i++) {
+        let obj = myTunes[keys[i]]
+        if (obj._position == myTunes[Id]['_position'] - 1) {
+          myTunes[keys[i]]['_position']++
+          myTunes[Id]['_position']--
+          break;
+        }
+      }
+    }
   }
 }
