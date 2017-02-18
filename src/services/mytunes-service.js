@@ -74,15 +74,17 @@ export default {
    },
   promoteTrack(Id) { 
 
-  console.log("you are in promote track in MyTunes-service with: ", Id)
+  //console.log("you are in promote track in MyTunes-service with: ", Id)
   myTunes[Id]['_votes'] = (myTunes[Id]['_votes'] + 1)
-  console.log(myTunes[Id]['_votes'])
+  //console.log(myTunes[Id]['_votes'])
   saveMytunes()
   this.getTracks()
 
   },
   demoteTrack(Id) { 
       myTunes[Id]['_votes'] = (myTunes[Id]['_votes'] - 1)
-        console.log(myTunes[Id]['_votes'])
+        console.log("** in demote track **")
+        saveMytunes()
+        this.getTracks()
   }
 }
