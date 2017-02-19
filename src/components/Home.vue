@@ -1,8 +1,10 @@
 <template>
   <div class="home">
     <!-- YOU WILL PROBABLY END UP WITH SOMETHING LIKE THIS -->
+    <div class="container">
     <myTunes class="my-tunes"></myTunes>
-    <itunes class="itunes">Itunes</itunes>
+    <itunes class="itunes"></itunes>
+    </div>
   </div>
 </template>
 
