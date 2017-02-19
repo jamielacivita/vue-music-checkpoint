@@ -40,13 +40,18 @@
     display: inline-block;
     min-height: 500px;
     min-width: 100%;
-    background: purple;
+    background:#ccccff;
+    padding-bottom: 20px;
+    border-radius: 5px;
   }
   
   .itunes {
     display: inline-block;
-    background: pink;
-    min-height: 500px;
+    background: #ccccff;
+    min-height: 120px;
     min-width: 100%;
+    border-radius: 5px;
   }
+
+  body {padding-top: 20px}
 </style>
