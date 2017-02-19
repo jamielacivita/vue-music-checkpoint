@@ -10,11 +10,10 @@
         </div>
         <div v-for="obj in trackData">
             <div class="row">
-                               <div class="col-xs-1 ">
-                    
+                <div class="col-xs-1 ">
                 </div>
                 <div class="col-xs-1 ">
-                    <img v-bind:src="obj.artworkUrl60">
+                    <img @click="playMusic(obj.previewUrl)" v-bind:src="obj.artworkUrl60">
                 </div>
                 <div class="col-xs-4 ">
                     {{obj.trackName}}
@@ -59,6 +58,27 @@
             down: function (Id) {
                 MyTunesService.demoteTrack(Id)
                 this.$parent.lastupdated = Date.now()
+            },
+
+            playMusic: function (URL) {
+                //console.log("in playMusic with: ", URL)
+                var songURL = URL
+                if (typeof (this.x) != 'undefined') // Check is playing or not.
+                {
+                    if (songURL == this.x.src) //Has user selected the same URL a second time (if so stop playing.)
+                    {
+                        this.x.pause()
+                        this.x.src = ''
+                        return false //returning here to exit function so song will not replay
+                    }
+                    else
+                    { this.x.load() }
+                }
+                this.x = document.createElement("AUDIO");
+                //console.log(this.x)
+                this.x.src = songURL
+                this.x.play()
+
             }
 
 
@@ -77,8 +97,5 @@
 </script>
 
 <style>
-/*.row {border: 1px solid black}*/
-
-
-
+    /*.row {border: 1px solid black}*/
 </style>

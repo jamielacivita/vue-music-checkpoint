@@ -43,7 +43,7 @@
       },
 
       addToMyTunes(index) {
-        console.log(index)
+        //console.log(index)
         MyTunesService.addTrack(this.requestResponse[index])
         this.$parent.lastupdated = Date.now()
       }
