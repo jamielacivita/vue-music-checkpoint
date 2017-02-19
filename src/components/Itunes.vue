@@ -1,6 +1,5 @@
 <template>
 <div>
-<h1>Itunes Coponent is here</h1>
 <form @submit.prevent="requestMusic">
 <h3>Enter Artist: <input type="text" v-model="artist"></h3>
 <button type="submit">Submit</button>    

@@ -1,8 +1,8 @@
 <template>
 <div>
-<h1>MyTunes Coponent is here</h1>
+
 <!--<h3>{{trackData}}</h3>-->
-<!--<h4 v-for="obj in trackData">{{obj.trackId}}</h4>-->
+
     <div v-for="obj in trackData">
     {{obj.trackId}}
     {{obj.artistName}}
@@ -10,7 +10,7 @@
     {{obj._position}}
     <!--{{obj.artworkUrl30}}-->
     <img v-bind:src="obj.artworkUrl30">
-    <button @click="removeTrack(obj.trackId)">Remove from Collection</button>
+    <button @click="removeTrack(obj.trackId)">Remove</button>
     <button @click="up(obj.trackId)">Promote</button>
     <button @click="down(obj.trackId)">Demote</button>
     <hr>
