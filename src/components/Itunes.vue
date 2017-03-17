@@ -2,6 +2,11 @@
   <div>
     <div class="row">
       <div class="col-xs-12 text-center">
+        <h3>Search Itunes</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 text-center">
         <form @submit.prevent="requestMusic">
           <h3><input type="text" v-model="artist"></h3>
           <!--<button type="submit">Submit</button>    -->
@@ -55,5 +60,7 @@
 </script>
 
 <style>
-.trackRow {margin-left: 20px}
+  .trackRow {
+    margin-left: 20px
+  }
 </style>

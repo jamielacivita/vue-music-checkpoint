@@ -52,17 +52,19 @@ padding-bottom: 15px;
     display: inline-block;
     min-height: 500px;
     min-width: 100%;
-    background:#ccccff;
+    background:#9d9daf;
     padding-bottom: 20px;
     border-radius: 5px;
+    box-shadow: 4px 4px 5px grey;
   }
   
   .itunes {
     display: inline-block;
-    background: #ccccff;
+    background: #9d9daf;
     min-height: 120px;
     min-width: 100%;
     border-radius: 5px;
+    box-shadow: 4px 4px 5px grey;
   }
 
   body {padding-top: 20px}
