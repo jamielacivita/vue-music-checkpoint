@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12">
-        The title goes here.
+      <div class="row title">
+        <div class="col-xs-12 text-center">
+My <i class="fa fa-apple" aria-hidden="true"></i> Wishlist
         </div>
         </div>
       <div class="row">
@@ -41,6 +41,13 @@
 * -- McCall
 **/
   
+.title {
+font-family: 'Montserrat', sans-serif;
+font-size: 35px;  
+padding-bottom: 15px; 
+}
+
+
   .my-tunes {
     display: inline-block;
     min-height: 500px;
