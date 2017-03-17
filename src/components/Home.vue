@@ -2,6 +2,11 @@
   <div class="home">
     <div class="container-fluid">
       <div class="row">
+        <div class="col-xs-12">
+        The title goes here.
+        </div>
+        </div>
+      <div class="row">
         <div class="col-xs-6">
           <myTunes class="my-tunes"></myTunes>
         </div>
